@@ -3,9 +3,9 @@ pragma solidity ^0.8.19;
 
 /* solhint-disable no-empty-blocks */
 
-import { IPaymaster } from "account-abstraction/contracts/interfaces/IPaymaster.sol";
-import { UserOperation } from "account-abstraction/contracts/interfaces/UserOperation.sol";
-import { IEntryPoint } from "account-abstraction/contracts/interfaces/IEntryPoint.sol";
+import { IPaymaster } from "@account-abstraction/contracts/interfaces/IPaymaster.sol";
+import { UserOperation } from "@account-abstraction/contracts/interfaces/UserOperation.sol";
+import { IEntryPoint } from "@account-abstraction/contracts/interfaces/IEntryPoint.sol";
 import { TestGas } from "./TestGas.sol";
 
 /**

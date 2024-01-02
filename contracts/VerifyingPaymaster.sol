@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.0;
 
-import { IEntryPoint } from "account-abstraction/contracts/interfaces/IEntryPoint.sol";
-import { UserOperation } from "account-abstraction/contracts/interfaces/UserOperation.sol";
-import { UserOperationLib } from "account-abstraction/contracts/interfaces/UserOperation.sol";
-import { BasePaymaster } from "account-abstraction/contracts/core/BasePaymaster.sol";
+import { IEntryPoint } from "@account-abstraction/contracts/interfaces/IEntryPoint.sol";
+import { UserOperation } from "@account-abstraction/contracts/interfaces/UserOperation.sol";
+import { UserOperationLib } from "@account-abstraction/contracts/interfaces/UserOperation.sol";
+import { BasePaymaster } from "@account-abstraction/contracts/core/BasePaymaster.sol";
 import { ECDSA } from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
-import "account-abstraction/contracts/core/Helpers.sol" as Helpers;
+import "@account-abstraction/contracts/core/Helpers.sol" as Helpers;
 
 /**
  * A paymaster based on the eth-infinitism sample VerifyingPaymaster contract.
@@ -19,7 +19,7 @@ import "account-abstraction/contracts/core/Helpers.sol" as Helpers;
  *
  * See account-abstraction/contracts/samples/VerifyingPaymaster.sol for detailed comments.
  */
-contract VerifyingPaymaster is BasePaymaster {
+contract VerifyingPaymaster is BasePaymaster, Ownable {
     using ECDSA for bytes32;
     using UserOperationLib for UserOperation;
     using SafeERC20 for IERC20;
@@ -32,7 +32,7 @@ contract VerifyingPaymaster is BasePaymaster {
 
     uint256 public constant POST_OP_GAS = 35000;
 
-    constructor(IEntryPoint _entryPoint, address _owner) BasePaymaster(_entryPoint) {
+    constructor(IEntryPoint _entryPoint, address _owner) BasePaymaster(_entryPoint)  Ownable(_owner) {
         _transferOwnership(_owner);
     }
 
